@@ -1,4 +1,3 @@
-# .github/workflows/ci.yml
 name: CI & Deploy
 
 on:
@@ -36,7 +35,7 @@ jobs:
           mdbook build
 
       - name: Upload pages artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: book/book
 
@@ -46,4 +45,4 @@ jobs:
     environment: github-pages
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
