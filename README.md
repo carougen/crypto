@@ -15,7 +15,7 @@ crypto/                         # Repository root
 ├── crates/                     # Rust crates (one concept per crate)
 │   ├── fingerprint/            # “fingerprint” library
 │   │   ├── Cargo.toml
-│   │   ├── src/lib.rs          # Reed–Solomon & hashing implementation
+│   │   ├── src/lib.rs          # Reed–Solomon implementation
 │   │   └── examples/           # Usage examples
 │   ├── freivalds-matrix/       # Freivalds library
 │   │   ├── Cargo.toml
@@ -57,7 +57,8 @@ cargo build --all
 cargo test --all
 
 # Generate the HTML for the book
-cd book && mdbook build
+cd book
+mdbook build
 ```
 
 ---
@@ -67,15 +68,15 @@ cd book && mdbook build
 ### fingerprint
 
 ```bash
-# Run the “demo” example for the fingerprint crate
-cargo run -p fingerprint --example demo
+# Run the reed-solomon with lagrange example for the fingerprint crate
+cargo run -p fingerprint --example rs_lagrange
 ```
 
-### freivalds-matrix
+### freivalds
 
 ```bash
 # Run tests or upcoming examples
-cargo test -p freivalds-matrix
+cargo test -p freivalds --example freivalds
 ```
 
 ---
