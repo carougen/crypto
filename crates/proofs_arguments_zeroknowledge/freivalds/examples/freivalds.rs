@@ -1,6 +1,6 @@
 // crates/freivalds-matrix/examples/freivalds.rs
 
-use freivalds_matrix::freivalds_test;
+use freivalds::freivalds_test;
 
 fn main() {
     // define matrices a, b
@@ -23,11 +23,13 @@ fn main() {
 
     // run Freivalds' test on correct product
     let ok = freivalds_test(&a, &b, &c, iterations);
-    println!("Test a * b == c: {}", ok);
+    println!("{a:?}\n{b:?}\n{c:?}");
+    println!("Test a * b == c: {}\n", ok);
 
     // introduce an error in c
     let mut c_bad = c.clone();
     c_bad[2][1] = 0; // corrupt one entry
+    println!("{a:?}\n{b:?}\n{c_bad:?}");
     let ok_bad = freivalds_test(&a, &b, &c_bad, iterations);
     println!("Test a * b == c_bad: {}", ok_bad);
 }

@@ -19,7 +19,7 @@ name = "fingerprint"
 version = "0.1.0"
 
 [[package]]
-name = "freivalds-matrix"
+name = "freivalds"
 version = "0.1.0"
 dependencies = [
  "rand",

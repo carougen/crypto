@@ -1,5 +1,5 @@
 [workspace]
 members = [
-    "crates/fingerprint",
-    "crates/freivalds",
+    "crates/proofs_arguments_zeroknowledge/fingerprint",
+    "crates/proofs_arguments_zeroknowledge/freivalds",
 ]
