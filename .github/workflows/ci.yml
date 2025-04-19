@@ -42,6 +42,17 @@ jobs:
             https://github.com/rust-lang/mdBook/releases/download/v${MDVER}/mdbook-v${MDVER}-x86_64-unknown-linux-gnu.tar.gz \
             | tar xz -C /usr/local/bin mdbook
 
+      - name: Cache mdbook-katex
+        id: cache-katex
+        uses: actions/cache@v3
+        with:
+          path: ~/.cargo/bin/mdbook-katex
+          key: ${{ runner.os }}-mdbook-katex-${{ hashFiles('**/Cargo.toml') }}
+
+      - name: Install mdbook-katex
+        if: steps.cache-katex.outputs.cache-hit != 'true'
+        run: cargo install mdbook-katex
+
       - name: Build book
         run: |
           cd book

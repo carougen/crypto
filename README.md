@@ -1,4 +1,4 @@
-# Crypto Notes
+# Exploring Cryptography With Rust
 
 This repository brings together my **notes**, **Rust examples**, and **documentation** on cryptography. It is organized with a **Cargo workspace** for the Rust code and an **mdBook** for the documentation.
 
@@ -8,31 +8,41 @@ This repository brings together my **notes**, **Rust examples**, and **documenta
 
 ```plaintext
 crypto/                         # Repository root
-├── README.md                   # This file
-├── .gitignore                  # Git ignore rules
-├── Cargo.toml                  # Cargo workspace definition
-├── Cargo.lock                  # Cargo lockfile
-├── crates/                     # Rust crates organized by textbook
+├── README.md                   # Project overview and usage
+├── .gitignore                  # Files and folders ignored by Git
+├── Cargo.toml                  # Cargo workspace definition (lists all crates)
+├── Cargo.lock                  # Cargo dependency lockfile
+├── crates/                     # Rust crates grouped by textbook
 │   ├── proofs_arguments_zeroknowledge/
-│   │   ├── fingerprint/        # Reed–Solomon & Lagrange interpolation
+│   │   ├── fingerprint/        # Reed–Solomon encoding and interpolation
 │   │   │   ├── Cargo.toml
 │   │   │   ├── src/lib.rs
 │   │   │   └── examples/
-│   │   ├── freivalds/          # Freivalds' algorithm
+│   │   ├── freivalds/          # Freivalds' algorithm crate
 │   │   │   ├── Cargo.toml
 │   │   │   ├── src/lib.rs
 │   │   │   └── examples/
-│   ├── (Other books with examples)
+│   ├── introduction_to_modern_cryptography/
+│   ├── ...
+│   └── serious_cryptography/
 ├── book/                       # mdBook documentation
-│   ├── book.toml               # mdBook configuration
+│   ├── book.toml               # mdBook configuration with KaTeX enabled
 │   └── src/
-│       ├── SUMMARY.md          # Table of contents
-│       ├── intro.md            # Introduction & usage guide
-│       ├── proofs_arguments_zeroknowledge.md
-        ├── (Other books report)
-│       └── examples/           # Code snippets for the book
-└── .github/                    # CI / GitHub Actions
-    └── workflows/ci.yml        # Tests, build and deploy
+│       ├── SUMMARY.md          # Table of contents (links to each book)
+│       ├── intro.md            # Project introduction and usage
+│       ├── proofs_arguments_zeroknowledge/
+│       │   ├── index.md        # Overview of the book
+│       │   ├── examples/       # Code snippets for documentation
+│       │   ├── chapter1.md     # Notes on the first chapter
+│       │   ├── chapter2.md     # Notes on the second chapter
+│       │   ├── ...
+│       │   └── images/         # (Optional) diagrams, visual content
+│       ├── introduction_to_modern_cryptography/
+│       ├── ...
+│       └── serious_cryptography/
+└── .github/
+    └── workflows/
+        └── ci.yml              # CI pipeline: test + mdBook + deploy to GitHub Pages
 ```
 
 ---
