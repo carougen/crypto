@@ -12,21 +12,24 @@ crypto/                         # Repository root
 ├── .gitignore                  # Git ignore rules
 ├── Cargo.toml                  # Cargo workspace definition
 ├── Cargo.lock                  # Cargo lockfile
-├── crates/                     # Rust crates (one concept per crate)
-│   ├── fingerprint/            # “fingerprint” library
-│   │   ├── Cargo.toml
-│   │   ├── src/lib.rs          # Reed–Solomon implementation
-│   │   └── examples/           # Usage examples
-│   ├── freivalds-matrix/       # Freivalds library
-│   │   ├── Cargo.toml
-│   │   └── src/lib.rs
-│   │   └── examples/           # Usage examples
+├── crates/                     # Rust crates organized by textbook
+│   ├── proofs_arguments_zeroknowledge/
+│   │   ├── fingerprint/        # Reed–Solomon & Lagrange interpolation
+│   │   │   ├── Cargo.toml
+│   │   │   ├── src/lib.rs
+│   │   │   └── examples/
+│   │   ├── freivalds/          # Freivalds' algorithm
+│   │   │   ├── Cargo.toml
+│   │   │   ├── src/lib.rs
+│   │   │   └── examples/
+│   ├── (Other books with examples)
 ├── book/                       # mdBook documentation
 │   ├── book.toml               # mdBook configuration
 │   └── src/
 │       ├── SUMMARY.md          # Table of contents
 │       ├── intro.md            # Introduction & usage guide
-│       ├── proofs-arguments-zero-knowledge.md
+│       ├── proofs_arguments_zeroknowledge.md
+        ├── (Other books report)
 │       └── examples/           # Code snippets for the book
 └── .github/                    # CI / GitHub Actions
     └── workflows/ci.yml        # Tests, build and deploy
@@ -65,18 +68,17 @@ mdbook build
 
 ## ▶️ Running a Rust Example
 
-### fingerprint
+### From "Proofs, Arguments, and Zero-Knowledge"
 
+#### fingerprint
 ```bash
-# Run the reed-solomon with lagrange example for the fingerprint crate
 cargo run -p fingerprint --example rs_lagrange
+cargo run -p fingerprint --example rs_polynomial
 ```
 
-### freivalds
-
+#### freivalds
 ```bash
-# Run tests or upcoming examples
-cargo test -p freivalds --example freivalds
+cargo run -p freivalds --example freivalds
 ```
 
 ---
@@ -90,7 +92,7 @@ cd book
 mdbook serve
 ```
 
-Open http://localhost:3000 in your browser.
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
