@@ -1,6 +1,6 @@
 # Introduction
 
-**Crypto** is a hands‑on companion to modern cryptography textbooks, built entirely in Rust. Instead of just reading about algorithms, you can explore self‑contained Rust crates that implement and demonstrate each concept, from error‑correcting codes to probabilistic proofs.
+**Exploring Cryptography with Rust** is a hands‑on companion to modern cryptography textbooks, built entirely in Rust. Instead of just reading about algorithms, you can explore self‑contained Rust crates that implement and demonstrate each concept, from error‑correcting codes to probabilistic proofs.
 
 ## 🚀 Project Goals
 
@@ -74,7 +74,3 @@ Contributions are welcome! To add a new chapter or book:
 2. Add your crate with `Cargo.toml`, `src/lib.rs`, and `examples/`
 3. Update the `[workspace]` members in the root `Cargo.toml`
 4. Send a pull request!
-
----
-
-Dive in to see theory come alive in Rust & happy coding!
