@@ -15,7 +15,7 @@ This notebook serves as a **companion** to the book, including:
 
 ## 🔧 Code Organization
 
-Each major concept from the book is implemented as a separate crate in [`crates/proofs_arguments_zeroknowledge/`](../../../crates/proofs_arguments_zeroknowledge/):
+Each major concept from the book is implemented as a separate crate in `crates/proofs_arguments_zeroknowledge/`:
 
 - `fingerprint` → Reed–Solomon encoding & Lagrange interpolation
 - `freivalds` → Freivalds' probabilistic matrix verifier
