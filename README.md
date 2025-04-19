@@ -7,7 +7,7 @@ This repository brings together my **notes**, **Rust examples**, and **documenta
 ## 📂 Project Structure
 
 ```plaintext
-crypto/                         # Repository root
+exploring-cryptography-with-rust/                         # Repository root
 ├── README.md                   # Project overview and usage
 ├── .gitignore                  # Files and folders ignored by Git
 ├── Cargo.toml                  # Cargo workspace definition (lists all crates)

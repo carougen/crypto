@@ -1,85 +1,62 @@
-# Chapter 1 – Introduction
+# Chapter 1 – Introduction to Proof Systems
 
-**Verifiable Computing (VC)** enables an untrusted **prover** to convince a lightweight **verifier** that a computation was executed correctly **without** the verifier re‑running the entire task.
-
-
-
-## 🎯 Core Objectives
-
-- **Correctness Assurance**  
-  Ensure that outsourced or untrusted computations yield correct results.
-- **Verifier Efficiency**  
-  Verification should be significantly cheaper (time, space, or communication) than re‑execution.
-- **Robust Soundness**  
-  Malicious provers cannot cheat except with negligible probability.
-- **(Optional) Zero‑Knowledge**  
-  Proofs may leak no additional information beyond the statement’s validity.
+This chapter introduces **verifiable computing** and the models used to formalize cryptographic proofs, such as **interactive proofs**, **arguments**, and **zero-knowledge proofs**. The motivation is to enable efficient verification of computations — without having to recompute them.
 
 
 
-## ☁️ Motivation: Delegated Computation
+## 🎯 Motivation: Delegating Computation
 
-1. **Cloud Services**  
-   Clients offload heavy tasks (data analytics, ML inference) to servers.
-2. **Resource Constraints**  
-   Embedded devices, IoT, or blockchains cannot re‑compute large workloads.
-3. **Trust Minimization**  
-   Even if the server is malicious, clients gain confidence via cryptographic proofs.
+A verifier wants to **outsource a computation** to a powerful prover, but **verify** the result quickly.
 
+- Traditional solution: redo the computation — inefficient.
+- Modern solution: ask the prover to **prove** that the computation was correct.
 
-
-## 🔍 Formal Model of a Proof System
-
-A **proof system** for language $L$ (or NP relation $R$) is a pair $(\mathcal{P},\mathcal{V})$:
-
-- **Prover** $\mathcal{P}(x,w)$
-    - Input: instance $x$ and witness $w$ such that $(x,w)\in R$.
-    - Output: proof transcript $\pi$.
-
-- **Verifier** $\mathcal{V}(x,\pi)$
-    - Input: $x$ and $\pi$.
-    - Output: $\texttt{accept}$ or $\texttt{reject}$ in probabilistic polynomial time.
-
-### 🔑 Desired Properties
-
-- **Completeness**  
-  Honest prover always convinces:
-  $$
-  \Pr[\mathcal{V}(x,\pi)=\texttt{accept}
-  \mid \pi\!\leftarrow\!\mathcal{P}(x,w)] = 1.
-  $$
-- **Soundness**  
-  No efficient prover can cheat on false $x$:
-  $$
-  \Pr[\mathcal{V}(x,\pi)=\texttt{accept}] \le \varepsilon,
-  $$
-  where $\varepsilon$ is negligible in $|x|$.
-- **Zero‑Knowledge (optional)**  
-  Exists a simulator producing transcripts indistinguishable from real, without $w$:
-  $$
-  \{\pi \mid \mathcal{P}(x,w)\} \approx_c \{\pi \mid \text{Sim}(x)\}.
-  $$
+This motivates the use of **proof systems**: formal protocols that allow a prover to convince a verifier that a statement is true.
 
 
 
-## 🎓 From NP to Interactive Proofs
+## 🧾 Basic Notions
 
-| Feature              | NP Proof (Static)  | Interactive Proof (IP)         |
-|----------------------|--------------------|--------------------------------|
-| Proof Transmission   | Entire witness $w$ | Sequence of messages           |
-| Verifier Computation | $\mathrm{Poly}(    | x                              |)$   | $\mathrm{Poly}(|x|)$      |
-| Soundness Guarantee  | Deterministic      | Probabilistic ($\varepsilon$)  |
-| Information Revealed | Full witness       | Optional zero‑knowledge        |
+Let $x$ be a binary input string and $L$ a language.
 
-**Insight**: By allowing randomness and interaction, verifier can sample “spot checks” to drastically reduce work.
+A **proof system** for $L$ is a protocol between a **prover** $P$ and a **verifier** $V$ such that:
+
+- **Completeness**: If $x \in L$, then $P$ can convince $V$ to accept.
+- **Soundness**: If $x \notin L$, then no cheating prover can convince $V$, except with small probability.
+
+The verifier is typically **efficient** (polynomial time), while the prover may be **unbounded** (in IPs) or polynomially bounded (in **arguments**).
 
 
 
-## 🧩 Motivating Example: Cloud Data Integrity
+## 📡 Interactive Proofs (IPs)
 
-- **Setup**: Client stores data on server : retains only a short digest.
-- **Query**: Client asks server to compute $f(\text{data})$.
-- **Proof**: Server returns output plus proof $\pi$.
-- **Verification**: Client runs $\mathcal{V}(f(\text{data}),\pi)$ in time $\ll$ cost of $f$ itself.
+- **Two-party protocols** $(P, V)$
+- $V$ is probabilistic and polynomial-time
+- $P$ may be computationally unbounded
+- The protocol consists of **multiple rounds** of communication
 
-This model generalizes to any function $f$ solvable by a circuit or program.
+> We define completeness and soundness *with respect to the randomness* of $V$ and possible strategies of $P$.
+
+
+
+## 🔐 Example: Proving Password Knowledge
+
+Suppose Alice has a password $x$ and commits to it using a hash function $z = h(x)$.
+
+She wants to prove knowledge of $x$ without revealing it.
+
+- Naive approach: send $x$ → leaks secret
+- Better: **zero-knowledge proof** (ZKP) for: “I know $x$ such that $h(x) = z$”
+
+> ZKPs prove *membership* in a language without leaking the witness.
+
+
+
+## 📦 Other Models
+
+| Model | Description |
+|-------|-------------|
+| IPs   | Interactive Proofs (strong soundness, expensive prover) |
+| Arguments | Sound only against efficient (poly-time) provers |
+| MIPs  | Multiple independent provers |
+| PCPs  | Probabilistic Checkable Proofs (static proofs, spot-checked) |
